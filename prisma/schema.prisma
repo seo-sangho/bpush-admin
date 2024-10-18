@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model companys {
+  ID           BigInt    @id @default(autoincrement())
+  COMPANY_CODE String    @db.VarChar(10)
+  COMPANY_NAME String?   @db.VarChar(100)
+  CREATED_DT   DateTime? @db.Date
+  CREATED_ID   String?   @db.VarChar(20)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model files {
+  ID         BigInt    @id @default(autoincrement())
+  REF_ID     BigInt
+  FILE_NAME  String?   @db.VarChar(255)
+  FILE_PATH  String?   @db.VarChar(255)
+  DELETE_YN  String?   @db.Char(1)
+  CREATED_DT DateTime? @db.Date
+  CREATED_ID String?   @db.VarChar(20)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model push_history {
+  ID           BigInt    @id @default(autoincrement())
+  PUSH_TOKEN   String    @db.VarChar(100)
+  USER_ID      String?   @db.VarChar(20)
+  BROWSER_TYPE String?   @db.VarChar(20)
+  TITLE        String?   @db.VarChar(255)
+  CONTENT      String?   @db.VarChar(255)
+  FILE_ID      BigInt?
+  SEND_DT      DateTime? @db.Date
+  CREATED_DT   DateTime? @db.Date
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATE_DT    DateTime? @db.Date
+  UPDATE_ID    String?   @db.VarChar(20)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model push_token {
+  ID           BigInt    @id @default(autoincrement())
+  PUSH_TOKEN   String    @db.VarChar(100)
+  USER_ID      String?   @db.VarChar(20)
+  EXPIRE_DT    DateTime? @db.Date
+  BROWSER_TYPE String?   @db.VarChar(20)
+  CREATED_DT   DateTime? @db.Date
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATE_DT    DateTime? @db.Date
+  UPDATE_ID    String?   @db.VarChar(20)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model push_users {
+  ID         BigInt    @id @default(autoincrement())
+  LOGIN_ID   String    @db.VarChar(20)
+  PUSH_YN    String    @db.Char(1)
+  CREATED_DT DateTime? @db.Date
+  CREATED_ID String?   @db.VarChar(20)
+  UPDATED_DT DateTime? @db.Date
+  UPDATED_ID String?   @db.VarChar(20)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  ID            BigInt    @id @default(autoincrement())
+  LOGIN_ID      String    @db.VarChar(20)
+  NAME          String?   @db.VarChar(30)
+  COMPANY_CODE  String    @db.VarChar(10)
+  LAST_LOGIN_DT DateTime? @db.Date
+  CREATED_DT    DateTime? @db.Date
+  CREATED_ID    String?   @db.VarChar(20)
+  UPDATED_DT    DateTime? @db.Date
+  UPDATED_ID    String?   @db.VarChar(20)
+}
