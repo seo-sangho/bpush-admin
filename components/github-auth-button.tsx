@@ -11,14 +11,14 @@ export default function GithubSignInButton() {
 
   return (
     <Button
-      className="w-full"
-      variant="outline"
-      type="button"
+      className='w-full'
+      variant='outline'
+      type='button'
       onClick={() =>
         signIn('github', { callbackUrl: callbackUrl ?? '/dashboard' })
       }
     >
-      <Icons.gitHub className="mr-2 h-4 w-4" />
+      <Icons.gitHub className='mr-2 h-4 w-4' />
       Continue with Github
     </Button>
   );
