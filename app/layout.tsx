@@ -9,18 +9,18 @@ import { auth } from '@/auth';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Next Shadcn',
-  description: 'Basic dashboard with Next.js and Shadcn'
+  title: 'B-Push ToyProject',
+  description: 'B-Push Dashboard. for ToyProject',
 };
 
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
   const session = await auth();
   return (
-    <html lang="en">
+    <html lang='ko'>
       <body
         className={`${inter.className} overflow-hidden `}
         suppressHydrationWarning={true}
