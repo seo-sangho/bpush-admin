@@ -6,22 +6,22 @@ const authConfig = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? '',
-      clientSecret: process.env.GITHUB_SECRET ?? ''
+      clientSecret: process.env.GITHUB_SECRET ?? '',
     }),
     CredentialProvider({
       credentials: {
         email: {
-          type: 'email'
+          type: 'email',
         },
         password: {
-          type: 'password'
-        }
+          type: 'password',
+        },
       },
       async authorize(credentials, req) {
         const user = {
           id: '1',
           name: 'John',
-          email: credentials?.email as string
+          email: credentials?.email as string,
         };
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -32,12 +32,13 @@ const authConfig = {
 
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
-      }
-    })
+      },
+    }),
   ],
   pages: {
-    signIn: '/' //sigin page
-  }
+    signIn: '/', //sigin page
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthConfig;
 
 export default authConfig;
