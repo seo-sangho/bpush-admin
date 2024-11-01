@@ -6,7 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@/components/ui/form';
 import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,7 +34,7 @@ const ImgSchema = z.object({
   fileKey: z.string(),
   key: z.string(),
   fileUrl: z.string(),
-  url: z.string()
+  url: z.string(),
 });
 export const IMG_MAX_LIMIT = 3;
 const formSchema = z.object({
@@ -49,7 +49,7 @@ const formSchema = z.object({
     .string()
     .min(3, { message: 'Product description must be at least 3 characters' }),
   price: z.coerce.number(),
-  category: z.string().min(1, { message: 'Please select a category' })
+  category: z.string().min(1, { message: 'Please select a category' }),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>;
@@ -61,7 +61,7 @@ interface ProductFormProps {
 
 export const EmployeeForm: React.FC<ProductFormProps> = ({
   initialData,
-  categories
+  categories,
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -80,12 +80,12 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
         description: '',
         price: 0,
         imgUrl: [],
-        category: ''
+        category: '',
       };
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues
+    defaultValues,
   });
 
   const onSubmit = async (data: ProductFormValues) => {
@@ -102,13 +102,13 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
+        description: 'There was a problem with your request.',
       });
     } catch (error: any) {
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
+        description: 'There was a problem with your request.',
       });
     } finally {
       setLoading(false);
@@ -138,16 +138,19 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
         onConfirm={onDelete}
         loading={loading}
       /> */}
-      <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
+      <div className='flex items-center justify-between'>
+        <Heading
+          title={title}
+          description={description}
+        />
         {initialData && (
           <Button
             disabled={loading}
-            variant="destructive"
-            size="sm"
+            variant='destructive'
+            size='sm'
             onClick={() => setOpen(true)}
           >
-            <Trash className="h-4 w-4" />
+            <Trash className='h-4 w-4' />
           </Button>
         )}
       </div>
@@ -155,11 +158,11 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-8"
+          className='w-full space-y-8'
         >
           <FormField
             control={form.control}
-            name="imgUrl"
+            name='imgUrl'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Images</FormLabel>
@@ -174,17 +177,17 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
               </FormItem>
             )}
           />
-          <div className="gap-8 md:grid md:grid-cols-3">
+          <div className='gap-8 md:grid md:grid-cols-3'>
             <FormField
               control={form.control}
-              name="name"
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Product name"
+                      placeholder='Product name'
                       {...field}
                     />
                   </FormControl>
@@ -194,14 +197,14 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="description"
+              name='description'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Product description"
+                      placeholder='Product description'
                       {...field}
                     />
                   </FormControl>
@@ -211,12 +214,16 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="price"
+              name='price'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input type="number" disabled={loading} {...field} />
+                    <Input
+                      type='number'
+                      disabled={loading}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -224,7 +231,7 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="category"
+              name='category'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category</FormLabel>
@@ -238,14 +245,17 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
                       <SelectTrigger>
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a category"
+                          placeholder='Select a category'
                         />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {/* @ts-ignore  */}
                       {categories.map((category) => (
-                        <SelectItem key={category._id} value={category._id}>
+                        <SelectItem
+                          key={category._id}
+                          value={category._id}
+                        >
                           {category.name}
                         </SelectItem>
                       ))}
@@ -256,7 +266,11 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
+          <Button
+            disabled={loading}
+            className='ml-auto'
+            type='submit'
+          >
             {action}
           </Button>
         </form>

@@ -17,65 +17,81 @@ model companys {
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model files {
-  ID         BigInt    @id @default(autoincrement())
-  REF_ID     BigInt
-  FILE_NAME  String?   @db.VarChar(255)
-  FILE_PATH  String?   @db.VarChar(255)
-  DELETE_YN  String?   @db.Char(1)
-  CREATED_DT DateTime? @db.Date
-  CREATED_ID String?   @db.VarChar(20)
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model push_history {
   ID           BigInt    @id @default(autoincrement())
-  PUSH_TOKEN   String    @db.VarChar(100)
-  USER_ID      String?   @db.VarChar(20)
+  PUSH_TOKEN   String    @db.VarChar(500)
+  USER_ID      String?   @db.VarChar(50)
+  COMPANY_CODE String?   @db.VarChar(20)
   BROWSER_TYPE String?   @db.VarChar(20)
   TITLE        String?   @db.VarChar(255)
   CONTENT      String?   @db.VarChar(255)
   FILE_ID      BigInt?
-  SEND_DT      DateTime? @db.Date
-  CREATED_DT   DateTime? @db.Date
+  CREATED_DT   DateTime? @db.Timestamp(0)
   CREATED_ID   String?   @db.VarChar(20)
-  UPDATE_DT    DateTime? @db.Date
-  UPDATE_ID    String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(0)
+  UPDATED_ID   String?   @db.VarChar(20)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model push_token {
   ID           BigInt    @id @default(autoincrement())
-  PUSH_TOKEN   String    @db.VarChar(100)
-  USER_ID      String?   @db.VarChar(20)
-  EXPIRE_DT    DateTime? @db.Date
+  PUSH_TOKEN   String?   @unique(map: "push_token_un") @db.VarChar(500)
+  USER_ID      String?   @db.VarChar(50)
+  EXPIRE_DT    DateTime? @db.Timestamp(0)
+  COMPANY_CODE String?   @db.VarChar(20)
   BROWSER_TYPE String?   @db.VarChar(20)
-  CREATED_DT   DateTime? @db.Date
+  CREATED_DT   DateTime? @db.Timestamp(0)
   CREATED_ID   String?   @db.VarChar(20)
-  UPDATE_DT    DateTime? @db.Date
-  UPDATE_ID    String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(0)
+  UPDATED_ID   String?   @db.VarChar(20)
+  DEL_YN       String?   @default("N") @db.Char(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model hibernate_sequence {
+  next_val BigInt?
+
+  @@ignore
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model push_users {
-  ID         BigInt    @id @default(autoincrement())
-  LOGIN_ID   String    @db.VarChar(20)
-  PUSH_YN    String    @db.Char(1)
-  CREATED_DT DateTime? @db.Date
-  CREATED_ID String?   @db.VarChar(20)
-  UPDATED_DT DateTime? @db.Date
-  UPDATED_ID String?   @db.VarChar(20)
+model push_user {
+  ID           BigInt    @id @default(autoincrement())
+  LOGIN_ID     String    @db.VarChar(50)
+  PUSH_YN      String    @default("N") @db.Char(1)
+  COMPANY_CODE String    @db.VarChar(10)
+  CREATED_DT   DateTime? @db.Timestamp(0)
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(0)
+  UPDATED_ID   String?   @db.VarChar(20)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model users {
+model upload_file {
+  ID               BigInt    @id @default(autoincrement())
+  CONTENT_TYPE     String?   @db.VarChar(20)
+  ORIGIN_FILE_NAME String?   @db.VarChar(255)
+  STORE_FILE_NAME  String?   @db.VarChar(255)
+  FILE_PATH        String?   @db.VarChar(255)
+  DELETE_YN        String?   @db.Char(1)
+  CREATED_DT       DateTime? @db.Date
+  CREATED_ID       String?   @db.VarChar(20)
+  del_yn           String?   @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user {
   ID            BigInt    @id @default(autoincrement())
-  LOGIN_ID      String    @db.VarChar(20)
+  LOGIN_ID      String    @unique(map: "users_unique_2") @db.VarChar(100)
   NAME          String?   @db.VarChar(30)
   COMPANY_CODE  String    @db.VarChar(10)
   LAST_LOGIN_DT DateTime? @db.Date
-  CREATED_DT    DateTime? @db.Date
-  CREATED_ID    String?   @db.VarChar(20)
+  CREATED_DT    DateTime  @default(dbgenerated("(curdate())")) @db.Date
+  CREATED_ID    String    @default("SYSTEM") @db.VarChar(20)
   UPDATED_DT    DateTime? @db.Date
   UPDATED_ID    String?   @db.VarChar(20)
+  PROVIDER      String?   @db.VarChar(50)
+  UUID          String    @unique(map: "users_unique") @db.VarChar(50)
+  EMAIL         String    @db.VarChar(100)
+  IMAGE         String?   @db.VarChar(256)
 }

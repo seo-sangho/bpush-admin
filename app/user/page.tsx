@@ -3,17 +3,21 @@ import Link from 'next/link';
 import UserAuthForm from '@/components/forms/user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import prisma from '@/prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 export const metadata: Metadata = {
   title: 'B-Push Dashboard',
   description: 'B-Push Dashboard. for ToyProject',
 };
 
+const prisma = new PrismaClient();
+
 export default async function AuthenticationPage() {
-  const companys = await prisma.companys.findMany({
-    take: 10,
-  });
+  // const companys = await prisma.companys.findMany({
+  //   take: 10,
+  // });
+
+  // console.log(companys);
 
   return (
     <div className='relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0'>

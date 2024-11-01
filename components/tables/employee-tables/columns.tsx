@@ -11,41 +11,41 @@ export const columns: ColumnDef<Employee>[] = [
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
+        aria-label='Select all'
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        aria-label='Select row'
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
-    accessorKey: 'first_name',
-    header: 'NAME'
+    accessorKey: 'ID',
+    header: 'NO',
   },
   {
-    accessorKey: 'country',
-    header: 'COUNTRY'
+    accessorKey: 'COMPANY_CODE',
+    header: 'CODE',
   },
   {
-    accessorKey: 'email',
-    header: 'EMAIL'
+    accessorKey: 'COMPANY_NAME',
+    header: 'NAME',
   },
   {
-    accessorKey: 'job',
-    header: 'COMPANY'
+    accessorKey: 'CREATED_DT',
+    header: 'Create DT',
   },
-  {
-    accessorKey: 'gender',
-    header: 'GENDER'
-  },
+  // {
+  //   accessorKey: 'gender',
+  //   header: 'GENDER',
+  // },
   {
     id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />
-  }
+    cell: ({ row }) => <CellAction data={row.original} />,
+  },
 ];

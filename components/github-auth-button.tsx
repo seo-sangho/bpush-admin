@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react';
 import { Button } from './ui/button';
 import { Icons } from './icons';
 
-export default function GithubSignInButton() {
+export default function GithubSignInButton({ title = 'Continue with Github' }) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
 
@@ -19,7 +19,7 @@ export default function GithubSignInButton() {
       }
     >
       <Icons.gitHub className='mr-2 h-4 w-4' />
-      Continue with Github
+      {title}
     </Button>
   );
 }

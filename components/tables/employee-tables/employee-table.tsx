@@ -6,7 +6,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  useReactTable
+  useReactTable,
 } from '@tanstack/react-table';
 import React from 'react';
 
@@ -17,7 +17,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from '@/components/ui/select';
 import {
   Table,
@@ -25,11 +25,11 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from '@/components/ui/table';
 import {
   DoubleArrowLeftIcon,
-  DoubleArrowRightIcon
+  DoubleArrowRightIcon,
 } from '@radix-ui/react-icons';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -55,7 +55,7 @@ export function EmployeeTable<TData, TValue>({
   searchKey,
   totalUsers,
   pageCount,
-  pageSizeOptions = [10, 20, 30, 40, 50]
+  pageSizeOptions = [10, 20, 30, 40, 50],
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
   const pathname = usePathname();
@@ -87,25 +87,25 @@ export function EmployeeTable<TData, TValue>({
 
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   // Handle server-side pagination
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
       pageIndex: fallbackPage - 1,
-      pageSize: fallbackPerPage
+      pageSize: fallbackPerPage,
     });
 
   React.useEffect(() => {
     router.push(
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
-        limit: pageSize
+        limit: pageSize,
       })}`,
       {
-        scroll: false
-      }
+        scroll: false,
+      },
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,12 +118,12 @@ export function EmployeeTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     state: {
-      pagination: { pageIndex, pageSize }
+      pagination: { pageIndex, pageSize },
     },
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: true,
-    manualFiltering: true
+    manualFiltering: true,
   });
 
   const searchValue = table.getColumn(searchKey)?.getFilterValue() as string;
@@ -161,11 +161,11 @@ export function EmployeeTable<TData, TValue>({
         `${pathname}?${createQueryString({
           page: null,
           limit: null,
-          search: searchValue
+          search: searchValue,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     }
     if (searchValue?.length === 0 || searchValue === undefined) {
@@ -173,11 +173,11 @@ export function EmployeeTable<TData, TValue>({
         `${pathname}?${createQueryString({
           page: null,
           limit: null,
-          search: null
+          search: null,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     }
 
@@ -194,10 +194,10 @@ export function EmployeeTable<TData, TValue>({
         onChange={(event) =>
           table.getColumn(searchKey)?.setFilterValue(event.target.value)
         }
-        className="w-full md:max-w-sm"
+        className='w-full md:max-w-sm'
       />
-      <ScrollArea className="h-[calc(80vh-220px)] rounded-md border">
-        <Table className="relative">
+      <ScrollArea className='h-[calc(80vh-220px)] rounded-md border'>
+        <Table className='relative'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -208,7 +208,7 @@ export function EmployeeTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -227,7 +227,7 @@ export function EmployeeTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -237,7 +237,7 @@ export function EmployeeTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className='h-24 text-center'
                 >
                   No results.
                 </TableCell>
@@ -245,18 +245,18 @@ export function EmployeeTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation='horizontal' />
       </ScrollArea>
 
-      <div className="flex flex-col items-center justify-end gap-2 space-x-2 py-4 sm:flex-row">
-        <div className="flex w-full items-center justify-between">
-          <div className="flex-1 text-sm text-muted-foreground">
+      <div className='flex flex-col items-center justify-end gap-2 space-x-2 py-4 sm:flex-row'>
+        <div className='flex w-full items-center justify-between'>
+          <div className='flex-1 text-sm text-muted-foreground'>
             {table.getFilteredSelectedRowModel().rows.length} of{' '}
             {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8">
-            <div className="flex items-center space-x-2">
-              <p className="whitespace-nowrap text-sm font-medium">
+          <div className='flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8'>
+            <div className='flex items-center space-x-2'>
+              <p className='whitespace-nowrap text-sm font-medium'>
                 Rows per page
               </p>
               <Select
@@ -265,14 +265,17 @@ export function EmployeeTable<TData, TValue>({
                   table.setPageSize(Number(value));
                 }}
               >
-                <SelectTrigger className="h-8 w-[70px]">
+                <SelectTrigger className='h-8 w-[70px]'>
                   <SelectValue
                     placeholder={table.getState().pagination.pageSize}
                   />
                 </SelectTrigger>
-                <SelectContent side="top">
+                <SelectContent side='top'>
                   {pageSizeOptions.map((pageSize) => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
+                    <SelectItem
+                      key={pageSize}
+                      value={`${pageSize}`}
+                    >
                       {pageSize}
                     </SelectItem>
                   ))}
@@ -281,47 +284,59 @@ export function EmployeeTable<TData, TValue>({
             </div>
           </div>
         </div>
-        <div className="flex w-full items-center justify-between gap-2 sm:justify-end">
-          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+        <div className='flex w-full items-center justify-between gap-2 sm:justify-end'>
+          <div className='flex w-[100px] items-center justify-center text-sm font-medium'>
             Page {table.getState().pagination.pageIndex + 1} of{' '}
             {table.getPageCount()}
           </div>
-          <div className="flex items-center space-x-2">
+          <div className='flex items-center space-x-2'>
             <Button
-              aria-label="Go to first page"
-              variant="outline"
-              className="hidden h-8 w-8 p-0 lg:flex"
+              aria-label='Go to first page'
+              variant='outline'
+              className='hidden h-8 w-8 p-0 lg:flex'
               onClick={() => table.setPageIndex(0)}
               disabled={!table.getCanPreviousPage()}
             >
-              <DoubleArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+              <DoubleArrowLeftIcon
+                className='h-4 w-4'
+                aria-hidden='true'
+              />
             </Button>
             <Button
-              aria-label="Go to previous page"
-              variant="outline"
-              className="h-8 w-8 p-0"
+              aria-label='Go to previous page'
+              variant='outline'
+              className='h-8 w-8 p-0'
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
-              <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
+              <ChevronLeftIcon
+                className='h-4 w-4'
+                aria-hidden='true'
+              />
             </Button>
             <Button
-              aria-label="Go to next page"
-              variant="outline"
-              className="h-8 w-8 p-0"
+              aria-label='Go to next page'
+              variant='outline'
+              className='h-8 w-8 p-0'
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
-              <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
+              <ChevronRightIcon
+                className='h-4 w-4'
+                aria-hidden='true'
+              />
             </Button>
             <Button
-              aria-label="Go to last page"
-              variant="outline"
-              className="hidden h-8 w-8 p-0 lg:flex"
+              aria-label='Go to last page'
+              variant='outline'
+              className='hidden h-8 w-8 p-0 lg:flex'
               onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               disabled={!table.getCanNextPage()}
             >
-              <DoubleArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+              <DoubleArrowRightIcon
+                className='h-4 w-4'
+                aria-hidden='true'
+              />
             </Button>
           </div>
         </div>

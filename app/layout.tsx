@@ -22,8 +22,8 @@ export default async function RootLayout({
   return (
     <html lang='ko'>
       <body
-        className={`${inter.className} overflow-hidden `}
-        suppressHydrationWarning={true}
+        className={`${inter.className} overflow-hidden`}
+        suppressHydrationWarning
       >
         <NextTopLoader showSpinner={false} />
         <Providers session={session}>

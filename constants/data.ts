@@ -15,7 +15,7 @@ export const users: User[] = [
     company: 'Dell',
     role: 'Frontend Developer',
     verified: false,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const users: User[] = [
     company: 'TechCorp',
     role: 'Backend Developer',
     verified: true,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ export const users: User[] = [
     company: 'WebTech',
     role: 'UI Designer',
     verified: true,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const users: User[] = [
     company: 'Innovate Inc.',
     role: 'Fullstack Developer',
     verified: false,
-    status: 'Inactive'
+    status: 'Inactive',
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const users: User[] = [
     company: 'TechGuru',
     role: 'Product Manager',
     verified: true,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 6,
@@ -55,7 +55,7 @@ export const users: User[] = [
     company: 'CodeGenius',
     role: 'QA Engineer',
     verified: false,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ export const users: User[] = [
     company: 'SoftWorks',
     role: 'UX Designer',
     verified: true,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ export const users: User[] = [
     company: 'DevCraft',
     role: 'DevOps Engineer',
     verified: false,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 9,
@@ -79,7 +79,7 @@ export const users: User[] = [
     company: 'WebSolutions',
     role: 'Frontend Developer',
     verified: true,
-    status: 'Active'
+    status: 'Active',
   },
   {
     id: 10,
@@ -87,8 +87,8 @@ export const users: User[] = [
     company: 'DataTech',
     role: 'Data Analyst',
     verified: false,
-    status: 'Active'
-  }
+    status: 'Active',
+  },
 ];
 
 export type Employee = {
@@ -115,36 +115,36 @@ export const navItems: NavItem[] = [
     title: 'Dashboard',
     href: '/dashboard',
     icon: 'dashboard',
-    label: 'Dashboard'
+    label: 'Dashboard',
   },
   {
     title: 'User',
     href: '/dashboard/user',
     icon: 'user',
-    label: 'user'
+    label: 'user',
   },
   {
-    title: 'Employee',
-    href: '/dashboard/employee',
+    title: 'Company',
+    href: '/dashboard/company',
     icon: 'employee',
-    label: 'employee'
+    label: 'employee',
   },
-  {
-    title: 'Profile',
-    href: '/dashboard/profile',
-    icon: 'profile',
-    label: 'profile'
-  },
+  // {
+  //   title: 'Profile',
+  //   href: '/dashboard/profile',
+  //   icon: 'profile',
+  //   label: 'profile',
+  // },
   {
     title: 'Kanban',
     href: '/dashboard/kanban',
     icon: 'kanban',
-    label: 'kanban'
+    label: 'kanban',
   },
-  {
-    title: 'Login',
-    href: '/',
-    icon: 'login',
-    label: 'login'
-  }
+  // {
+  //   title: 'Login',
+  //   href: '/',
+  //   icon: 'login',
+  //   label: 'login'
+  // }
 ];

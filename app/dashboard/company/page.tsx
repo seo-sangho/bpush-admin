@@ -9,10 +9,11 @@ import { Employee } from '@/constants/data';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import prisma from '@/prisma/client';
 
 const breadcrumbItems = [
   { title: 'Dashboard', link: '/dashboard' },
-  { title: 'Employee', link: '/dashboard/employee' }
+  { title: 'Employee', link: '/dashboard/company' },
 ];
 
 type paramsProps = {
@@ -22,6 +23,8 @@ type paramsProps = {
 };
 
 export default async function page({ searchParams }: paramsProps) {
+  const company = await prisma.companys.findMany();
+
   const page = Number(searchParams.page) || 1;
   const pageLimit = Number(searchParams.limit) || 10;
   const country = searchParams.search || null;
@@ -29,38 +32,38 @@ export default async function page({ searchParams }: paramsProps) {
 
   const res = await fetch(
     `https://api.slingacademy.com/v1/sample-data/users?offset=${offset}&limit=${pageLimit}` +
-      (country ? `&search=${country}` : '')
+      (country ? `&search=${country}` : ''),
   );
   const employeeRes = await res.json();
   const totalUsers = employeeRes.total_users; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
-  const employee: Employee[] = employeeRes.users;
+  // const employee: Employee[] = employeeRes.users;
   return (
     <PageContainer>
-      <div className="space-y-4">
+      <div className='space-y-4'>
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div className="flex items-start justify-between">
+        <div className='flex items-start justify-between'>
           <Heading
             title={`Employee (${totalUsers})`}
-            description="Manage employees (Server side table functionalities.)"
+            description='Manage employees (Server side table functionalities.)'
           />
 
           <Link
             href={'/dashboard/employee/new'}
             className={cn(buttonVariants({ variant: 'default' }))}
           >
-            <Plus className="mr-2 h-4 w-4" /> Add New
+            <Plus className='mr-2 h-4 w-4' /> Add New
           </Link>
         </div>
         <Separator />
 
         <EmployeeTable
-          searchKey="country"
+          searchKey='country'
           pageNo={page}
           columns={columns}
           totalUsers={totalUsers}
-          data={employee}
+          data={company}
           pageCount={pageCount}
         />
       </div>

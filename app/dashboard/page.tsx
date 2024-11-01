@@ -13,16 +13,16 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export default async function page() {
-  const res = await prisma.push_token.create({
-    data: {
-      PUSH_TOKEN: 'push-token_push-token',
-    },
-  });
+  // const res = await prisma.push_token.create({
+  //   data: {
+  //     PUSH_TOKEN: 'push-token_push-token',
+  //   },
+  // });
 
   return (
     <PageContainer scrollable={true}>

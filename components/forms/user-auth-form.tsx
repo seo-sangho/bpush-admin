@@ -3,11 +3,19 @@
 // import {
 //   Form,
 //   FormControl,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-//   FormMessage,
+//   //   FormControl,
+//   //   FormField,
+//   //   FormItem,
+//   //   FormLabel,
+//   //   FormMessage,
 // } from '@/components/ui/form';
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from '@/components/ui/select';
 // import { Input } from '@/components/ui/input';
 // import { zodResolver } from '@hookform/resolvers/zod';
 // import { signIn } from 'next-auth/react';
@@ -15,16 +23,17 @@
 // import { useState } from 'react';
 // import { useForm } from 'react-hook-form';
 // import * as z from 'zod';
+import { CompanyItems } from '@/types';
 import GithubSignInButton from '../github-auth-button';
 import GoogleSignInButton from '../google-auth-button';
+// import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 // const formSchema = z.object({
 //   email: z.string().email({ message: 'Enter a valid email address' }),
 // });
-
 // type UserFormValue = z.infer<typeof formSchema>;
 
-export default function UserAuthForm() {
+export default function UserAuthForm({ company = [] }: CompanyItems) {
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get('callbackUrl');
   // const [loading, setLoading] = useState(false);
@@ -42,7 +51,6 @@ export default function UserAuthForm() {
   //     callbackUrl: callbackUrl ?? '/dashboard',
   //   });
   // };
-
   return (
     <>
       {/* <Form {...form}>
@@ -89,8 +97,36 @@ export default function UserAuthForm() {
         </div>
       </div> */}
       {/* <p className='text-sm'>소셜 로그인</p> */}
-      <GithubSignInButton />
+      {/* <Form> */}
+      {/* <div> */}
+      {/* <Select>
+          <SelectTrigger>
+            <SelectValue placeholder='Select a company' />
+          </SelectTrigger>
+          <SelectContent>
+            {company.map((item) => (
+              <SelectItem
+                key={item.ID}
+                value={'' + item.ID}
+              >
+                {item.COMPANY_NAME}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select> */}
+      {/* </div> */}
       <GoogleSignInButton />
+      <GithubSignInButton />
+      {/* <div className='relative'>
+        <div className='absolute inset-0 flex items-center'>
+          <span className='w-full border-t' />
+        </div>
+        <div className='relative flex justify-center text-xs uppercase'>
+          <span className='bg-background px-2 text-muted-foreground'>
+            Or 신규가입
+          </span>
+        </div>
+      </div> */}
     </>
   );
 }
