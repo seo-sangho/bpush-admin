@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "Kiran",
-    "url": "https://github.com/Kiranism"
+    "name": "seo.sangho",
+    "url": "https://github.com/seo-sangho/bpush-admin"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -56,6 +56,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.48.0",
     "eslint-config-next": "^14.0.1",
+    "firebase-admin": "^12.7.0",
     "lucide-react": "^0.291.0",
     "next": "^14.2.3",
     "next-auth": "^5.0.0-beta.18",

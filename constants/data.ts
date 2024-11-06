@@ -118,8 +118,8 @@ export const navItems: NavItem[] = [
     label: 'Dashboard',
   },
   {
-    title: 'User',
-    href: '/dashboard/user',
+    title: 'Device',
+    href: '/dashboard/device',
     icon: 'user',
     label: 'user',
   },
@@ -128,6 +128,12 @@ export const navItems: NavItem[] = [
     href: '/dashboard/company',
     icon: 'employee',
     label: 'employee',
+  },
+  {
+    title: 'User',
+    href: '/dashboard/user',
+    icon: 'user',
+    label: 'user',
   },
   // {
   //   title: 'Profile',

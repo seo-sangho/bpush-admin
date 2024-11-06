@@ -42,12 +42,12 @@ export default async function page() {
         >
           <TabsList>
             <TabsTrigger value='overview'>Overview</TabsTrigger>
-            <TabsTrigger
+            {/* <TabsTrigger
               value='analytics'
               disabled
             >
               Analytics
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
           <TabsContent
             value='overview'
@@ -181,11 +181,9 @@ export default async function page() {
                   <RecentSales />
                 </CardContent>
               </Card>
-              <div className='col-span-4'>
-                <AreaGraph />
-              </div>
+              <div className='col-span-4'>{/* <AreaGraph /> */}</div>
               <div className='col-span-4 md:col-span-3'>
-                <PieGraph />
+                {/* <PieGraph /> */}
               </div>
             </div>
           </TabsContent>
