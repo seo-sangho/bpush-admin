@@ -4,6 +4,14 @@ const nextConfig = {
     domains: ['utfs.io'],
   },
   reactStrictMode: false,
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/bpush/:path*',
+  //       destination: '/:path*',
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

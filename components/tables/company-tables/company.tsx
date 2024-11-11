@@ -11,7 +11,7 @@ import {
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+// import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -27,6 +27,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Heading } from '@/components/ui/heading';
+import { Separator } from '@/components/ui/separator';
+import PushMessageDialog from '@/components/device/push-message-dialog';
 import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
@@ -34,6 +37,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { sendPush, sendPushForCompany } from '@/lib/api-utils';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,7 +52,7 @@ interface DataTableProps<TData, TValue> {
   };
 }
 
-export function EmployeeTable<TData, TValue>({
+export function CompanyTable<TData, TValue>({
   columns,
   data,
   pageNo,
@@ -186,16 +190,51 @@ export function EmployeeTable<TData, TValue>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
+  function submitHandler(title: string, content: string) {
+    console.log(title, content);
+    const messages = {
+      title: title ?? 'B-PUSH',
+      content: content,
+    };
+
+    let companyCode = 'S01';
+
+    console.log(messages, companyCode);
+    sendPushForCompany(messages, companyCode);
+  }
+
   return (
     <>
-      <Input
+      {/* <Input
         placeholder={`Search ${searchKey}...`}
         value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ''}
         onChange={(event) =>
           table.getColumn(searchKey)?.setFilterValue(event.target.value)
         }
         className='w-full md:max-w-sm'
-      />
+      /> */}
+      <div className='flex items-start justify-between'>
+        <Heading
+          title={`Company (${totalUsers})`}
+          description='등록된 회사들입니다.'
+        />
+
+        {/* <Link
+            href={'/dashboard/employee/new'}
+            className={cn(buttonVariants({ variant: 'default' }))}
+          >
+            <Plus className='mr-2 h-4 w-4' /> Add New
+          </Link> */}
+        <PushMessageDialog
+          // submit={submitHandler}
+          submit={submitHandler}
+          selectedCount={() => {
+            return table.getFilteredSelectedRowModel().rows.length;
+          }}
+        />
+      </div>
+      <Separator />
+
       <ScrollArea className='h-[calc(80vh-220px)] rounded-md border'>
         <Table className='relative'>
           <TableHeader>

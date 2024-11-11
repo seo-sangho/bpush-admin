@@ -95,15 +95,15 @@ const authConfig = {
       }
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      console.log(`jwt:`, token, user, account, profile);
+      // console.log(`jwt:`, token, user, account, profile);
       return token;
     },
     async session({ session, user, token }) {
-      console.log(
-        `session: ${JSON.stringify(session)} user: ${JSON.stringify(
-          user,
-        )} token: ${JSON.stringify(token)}`,
-      );
+      // console.log(
+      //   `session: ${JSON.stringify(session)} user: ${JSON.stringify(
+      //     user,
+      //   )} token: ${JSON.stringify(token)}`,
+      // );
       return session;
     },
   },

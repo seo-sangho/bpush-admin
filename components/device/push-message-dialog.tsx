@@ -1,5 +1,4 @@
 'use client';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,26 +11,64 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
+import { useState } from 'react';
+// import {
+//   AlertDialog,
+//   AlertDialogCancel,
+//   AlertDialogContent,
+//   AlertDialogDescription,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogTitle,
+// } from '@/components/ui/alert-dialog';
+// import { useTaskStore } from '@/lib/store';
+// import { useToast } from '../ui/use-toast';
+// import { number } from 'zod';
 
-import { useTaskStore } from '@/lib/store';
+export default function PushMessageDialog({
+  submit,
+  selectedCount,
+}: {
+  submit: Function;
+  selectedCount: Function;
+}) {
+  // const addTask = useTaskStore((state) => state.addTask);
+  // const { toast } = useToast();
 
-export default function NewTaskDialog() {
-  const addTask = useTaskStore((state) => state.addTask);
+  // const contentRef = useRef();
+  const [content, setContent] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const { title, description } = Object.fromEntries(formData);
+    const { title, content } = Object.fromEntries(formData);
 
-    if (typeof title !== 'string' || typeof description !== 'string') return;
-    addTask(title, description);
+    console.log('handleSubmit', title, content);
+    // if (typeof title !== 'string' || typeof content !== 'string') return;
+
+    // addTask(title, description);
+
+    submit(title, content);
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Dialog
+      open={isOpen}
+      onOpenChange={setIsOpen}
+    >
+      <DialogTrigger
+        asChild
+        onClick={(e) => {
+          if (selectedCount() === 0) {
+            e.preventDefault();
+            alert('전송 대상이 선택되지 않았습니다.');
+            return;
+          }
+        }}
+      >
         <Button
           variant='secondary'
           size='sm'
@@ -55,7 +92,7 @@ export default function NewTaskDialog() {
             <Input
               id='title'
               name='title'
-              placeholder='title...'
+              placeholder='제목 입력(선택 사항)'
               className='col-span-4'
             />
           </div>
@@ -63,8 +100,11 @@ export default function NewTaskDialog() {
             <Textarea
               id='content'
               name='content'
-              placeholder='content...'
+              placeholder='알림 텍스트 입력'
               className='col-span-4'
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
             />
           </div>
         </form>
@@ -74,6 +114,13 @@ export default function NewTaskDialog() {
               type='submit'
               size='sm'
               form='todo-form'
+              onClick={(e) => {
+                if (!content) {
+                  e.preventDefault();
+                  alert('전달 메세지는 필수입니다.');
+                  return;
+                }
+              }}
             >
               보내기
             </Button>

@@ -1,11 +1,11 @@
+import React from 'react';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { ProductForm } from '@/components/forms/product-form';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import React from 'react';
 
 const breadcrumbItems = [
   { title: 'Dashboard', link: '/dashboard' },
-  { title: 'Employee', link: '/dashboard/employee' },
+  { title: 'Company', link: '/dashboard/company' },
   { title: 'Create', link: '/dashboard/employee/create' },
 ];
 

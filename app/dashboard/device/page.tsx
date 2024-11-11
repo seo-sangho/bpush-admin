@@ -14,7 +14,7 @@ export default async function page() {
 
   return (
     <PageContainer>
-      <div className='space-y-2'>
+      <div className='space-y-4'>
         <Breadcrumbs items={breadcrumbItems} />
         <Devices data={devices} />
       </div>

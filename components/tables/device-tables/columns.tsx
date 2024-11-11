@@ -1,4 +1,5 @@
 'use client';
+
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from '../user-tables/cell-action';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -32,13 +33,13 @@ export const columns: ColumnDef<push_token>[] = [
         return '';
       }
 
-      // if (row.original.PUSH_TOKEN.length > 64) {
-      // return row.original.PUSH_TOKEN.substring(0, 64) + '...';
-      // }
+      if (row.original.PUSH_TOKEN.length > 64) {
+        return row.original.PUSH_TOKEN.substring(0, 64) + '...';
+      }
 
       return row.original.PUSH_TOKEN;
     },
-    maxSize: 100,
+    maxSize: 64,
   },
   {
     accessorKey: 'USER_ID',
@@ -51,6 +52,22 @@ export const columns: ColumnDef<push_token>[] = [
   {
     accessorKey: 'BROWSER_TYPE',
     header: '브라우저 종류',
+    cell: ({ row }) => {
+      const d = row.original.BROWSER_TYPE ?? '';
+      if (!d) {
+        return '';
+      }
+
+      // TODO 이하 리팩토링 해야됨. agent 정보가 생각보다 길어서 일단 split 후에 뒤쪽만 노출
+      const t = d.split(' ');
+      if (t.length > 2) {
+        return t[t.length - 2] + ' ' + t[t.length - 1];
+      }
+
+      if (t.length == 1) {
+        return t[0];
+      }
+    },
   },
   {
     accessorKey: 'EXPIRE_DT',

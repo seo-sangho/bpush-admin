@@ -1,10 +1,12 @@
 'use client';
+
 import { Checkbox } from '@/components/ui/checkbox';
-import { Employee } from '@/constants/data';
+// import { Company } from '@/constants/data';
+import { CompanyItem } from '@/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns: ColumnDef<CompanyItem>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -26,24 +28,25 @@ export const columns: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: 'ID',
-    header: 'NO',
+    header: 'No',
   },
   {
     accessorKey: 'COMPANY_CODE',
-    header: 'CODE',
+    header: '회사코드',
   },
   {
     accessorKey: 'COMPANY_NAME',
-    header: 'NAME',
+    header: '회사명',
   },
   {
     accessorKey: 'CREATED_DT',
-    header: 'Create DT',
+    header: '가입일',
+    cell: ({ row }) => {
+      const createDate = row.original.CREATED_DT;
+      return `
+        ${createDate?.getFullYear()}-${createDate?.getMonth()}-${createDate?.getDay()}`;
+    },
   },
-  // {
-  //   accessorKey: 'gender',
-  //   header: 'GENDER',
-  // },
   {
     id: 'actions',
     cell: ({ row }) => <CellAction data={row.original} />,
