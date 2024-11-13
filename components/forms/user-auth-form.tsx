@@ -23,7 +23,7 @@
 // import { useState } from 'react';
 // import { useForm } from 'react-hook-form';
 // import * as z from 'zod';
-import { CompanyItems } from '@/types';
+// import { CompanyItems } from '@/types';
 import GithubSignInButton from '../github-auth-button';
 import GoogleSignInButton from '../google-auth-button';
 // import { ScrollArea } from '@radix-ui/react-scroll-area';
@@ -33,7 +33,8 @@ import GoogleSignInButton from '../google-auth-button';
 // });
 // type UserFormValue = z.infer<typeof formSchema>;
 
-export default function UserAuthForm({ company = [] }: CompanyItems) {
+// export default function UserAuthForm({ company = [] }) {
+export default function UserAuthForm() {
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get('callbackUrl');
   // const [loading, setLoading] = useState(false);

@@ -26,26 +26,26 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'COMPANY_CODE',
-    header: 'COMPANY',
+    header: '회사코드',
   },
   {
     accessorKey: 'LOGIN_ID',
-    header: 'ID',
+    header: '사용자 ID',
   },
   {
     accessorKey: 'NAME',
-    header: 'NAME',
+    header: '이름',
   },
   {
     accessorKey: 'PROVIDER',
-    header: 'PROVIDER',
+    header: '로그인 서비스',
   },
   {
     accessorKey: 'UUID',
-    header: 'PROVIDER RANDOM ID',
+    header: '로그인 서비스 임시 ID',
   },
-  {
-    id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />,
-  },
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <CellAction data={row.original} />,
+  // },
 ];

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendFCMNotification } from '@/lib/fcm-utils';
 import admin from 'firebase-admin';
-import { count } from 'console';
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const { title, content, pushTokens = [] } = await request.json();
@@ -12,7 +11,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     );
   }
 
-  if (pushTokens.length > 500) {
+  if (pushTokens.length > 501) {
     return NextResponse.json(
       { code: 400, error: `push tokens is max 500(${pushTokens.length})` },
       { status: 400 },
@@ -73,7 +72,7 @@ function toTokens(
     push.push({
       token: pushToken,
       notification: {
-        title: title ?? 'B-PUSH',
+        title: !title ? 'B-PUSH' : title,
         body: content,
         imageUrl:
           'https://images.freeimages.com/clg/images/32/326218/uci-approved-logo_f.jpg',

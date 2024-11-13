@@ -24,7 +24,7 @@ import { signIn } from 'next-auth/react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { CompanyItems } from '@/types';
+import { CompanyItem } from '@/types';
 // import GithubSignInButton from '../github-auth-button';
 // import GoogleSignInButton from '../google-auth-button';
 // import { ScrollArea } from '@radix-ui/react-scroll-area';
@@ -35,7 +35,11 @@ const formSchema = z.object({
 });
 type UserFormValue = z.infer<typeof formSchema>;
 
-export default function UserJoinForm({ company = [] }: CompanyItems) {
+export default function UserJoinForm({
+  company = [],
+}: {
+  company: CompanyItem[];
+}) {
   // const router = useRouter();
   // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get('callbackUrl');

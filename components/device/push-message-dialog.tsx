@@ -29,7 +29,7 @@ export default function PushMessageDialog({
   submit,
   selectedCount,
 }: {
-  submit: Function;
+  submit: any;
   selectedCount: Function;
 }) {
   // const addTask = useTaskStore((state) => state.addTask);
@@ -46,12 +46,11 @@ export default function PushMessageDialog({
     const formData = new FormData(form);
     const { title, content } = Object.fromEntries(formData);
 
-    console.log('handleSubmit', title, content);
+    // console.log('handleSubmit', title, content);
     // if (typeof title !== 'string' || typeof content !== 'string') return;
 
-    // addTask(title, description);
-
     submit(title, content);
+    setContent('');
   };
 
   return (
@@ -100,7 +99,7 @@ export default function PushMessageDialog({
             <Textarea
               id='content'
               name='content'
-              placeholder='알림 텍스트 입력'
+              placeholder='Push 메세지 입력'
               className='col-span-4'
               onChange={(e) => {
                 setContent(e.target.value);

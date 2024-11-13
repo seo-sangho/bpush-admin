@@ -1,16 +1,21 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+// import { NextApiRequest, NextApiResponse } from 'next';
 
-type ResponseData = {
-  message: string;
-};
+import { NextResponse } from 'next/server';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>,
-) {
-  if (req.method !== 'GET') {
-    res.status(405).json({ message: 'Method Not Allowed' });
-  }
+// type ResponseData = {
+//   message: string;
+// };
 
-  res.status(200).json({ message: 'OK' });
+// export default function handler(
+//   req: NextApiRequest,
+//   res: NextApiResponse<ResponseData>,
+// ) {
+//   if (req.method !== 'GET') {
+//     res.status(405).json({ message: 'Method Not Allowed' });
+//   }
+
+//   res.status(200).json({ message: 'OK' });
+// }
+export function GET() {
+  return NextResponse.json(null, { status: 200 });
 }

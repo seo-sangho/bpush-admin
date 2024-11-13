@@ -190,18 +190,18 @@ export function CompanyTable<TData, TValue>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
-  function submitHandler(title: string, content: string) {
-    console.log(title, content);
+  const handleSubmit = (title: string, content: string) => {
     const messages = {
       title: title ?? 'B-PUSH',
       content: content,
     };
 
-    let companyCode = 'S01';
+    const company = table.getFilteredSelectedRowModel().rows[0];
+    const companyCode: string = company.getValue('COMPANY_CODE');
+    // let companyCode = 'S01';
 
-    console.log(messages, companyCode);
     sendPushForCompany(messages, companyCode);
-  }
+  };
 
   return (
     <>
@@ -227,7 +227,7 @@ export function CompanyTable<TData, TValue>({
           </Link> */}
         <PushMessageDialog
           // submit={submitHandler}
-          submit={submitHandler}
+          submit={handleSubmit}
           selectedCount={() => {
             return table.getFilteredSelectedRowModel().rows.length;
           }}

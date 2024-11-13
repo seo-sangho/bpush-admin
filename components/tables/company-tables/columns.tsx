@@ -47,8 +47,8 @@ export const columns: ColumnDef<CompanyItem>[] = [
         ${createDate?.getFullYear()}-${createDate?.getMonth()}-${createDate?.getDay()}`;
     },
   },
-  {
-    id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />,
-  },
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <CellAction data={row.original} />,
+  // },
 ];

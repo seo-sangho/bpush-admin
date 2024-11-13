@@ -62,7 +62,8 @@ export default async function AuthenticationPage() {
               Google 과 Github 를 이용한 로그인
             </p>
           </div>
-          <UserAuthForm company={companys} />
+          {/* <UserAuthForm company={companys} /> */}
+          <UserAuthForm />
           <p className='px-8 text-center text-sm text-muted-foreground'>
             By clicking continue, you agree to our{' '}
             <Link

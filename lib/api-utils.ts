@@ -25,23 +25,21 @@ export async function sendPushForCompany(
   const url = process.env.NEXT_PUBLIC_BPUSH_API ?? '';
   const api = process.env.NEXT_PUBLIC_BPUSH_API_PUSH_FOR_COMPANY ?? '';
 
-  console.log('112312123' + companyCode, api);
-
-  // try {
-  //   axios
-  //     .post(url + api + '/' + companyCode, messages)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // } catch (err: any) {
-  //   console.log(`error: ${err}`);
-  // }
+  try {
+    axios
+      .post(url + api + '/' + companyCode, messages)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (err: any) {
+    console.log(`error: ${err}`);
+  }
 }
 
-export async function sendPushForUsers(messages) {
+export async function sendPushForUsers(messages: any) {
   const url = process.env.NEXT_PUBLIC_BPUSH_API ?? '';
   const api = process.env.NEXT_PUBLIC_BPUSH_API_PUSH_FOR_USERS ?? '';
 

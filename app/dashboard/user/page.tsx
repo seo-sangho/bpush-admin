@@ -1,6 +1,6 @@
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import PageContainer from '@/components/layout/page-container';
-import { UserClient } from '@/components/tables/user-tables/client';
+import { UserClient } from '@/components/tables/user-tables/user';
 // import { users } from '@/constants/data';
 import prisma from '@/prisma/client';
 

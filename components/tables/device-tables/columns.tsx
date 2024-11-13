@@ -81,8 +81,8 @@ export const columns: ColumnDef<push_token>[] = [
       return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDay();
     },
   },
-  {
-    id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />,
-  },
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <CellAction data={row} />,
+  // },
 ];

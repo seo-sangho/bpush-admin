@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
@@ -23,13 +23,13 @@ interface DeviceToken {
 export const Devices: React.FC<DeviceToken> = ({ data }) => {
   // const router = useRouter();
   // const [table, setTable] = useState();
-  let tt; // table object
+  let tableObject: any; // table object
   let _title: string;
   let _content: string;
 
   const handleSubmit = (title: string, content: string) => {
     // get title, content for push
-    console.log(title, content);
+    // console.log(title, content);
 
     if (typeof title !== 'string' || typeof content !== 'string') return;
 
@@ -48,8 +48,11 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
       ],
     };
 
-    tt.getFilteredSelectedRowModel().rows.forEach((token) => {
-      console.log(token.original.PUSH_TOKEN, token.original.USER_ID);
+    tableObject.getFilteredSelectedRowModel().rows.forEach((token: any) => {
+      console.log(
+        'getFilteredSelectedRowModel ' + token.original.PUSH_TOKEN,
+        token.original.USER_ID,
+      );
       const temp = {
         pushToken: token.original.PUSH_TOKEN,
         userId: token.original.USER_ID,
@@ -60,24 +63,6 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
 
     sendPush(messages);
   };
-
-  // async function sendPush(messages) {
-  //   const url = process.env.NEXT_PUBLIC_BPUSH_API ?? '';
-  //   const api = process.env.NEXT_PUBLIC_BPUSH_API_PUSH ?? '';
-
-  //   try {
-  //     axios
-  //       .post(url + api, messages)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } catch (err: any) {
-  //     console.log(`error: ${err}`);
-  //   }
-  // }
 
   return (
     <>
@@ -95,7 +80,8 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
         <PushMessageDialog
           submit={handleSubmit}
           selectedCount={() => {
-            if (tt) return tt.getFilteredSelectedRowModel().rows.length;
+            if (tableObject)
+              return tableObject.getFilteredSelectedRowModel().rows.length;
             else return 0;
           }}
         />
@@ -105,8 +91,8 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
         searchKey='name'
         columns={columns}
         data={data}
-        getTable={(t) => {
-          tt = t;
+        getTable={(_tableObject) => {
+          tableObject = _tableObject;
         }}
       />
     </>
