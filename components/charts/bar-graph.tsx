@@ -145,10 +145,10 @@ export function BarGraph() {
         <div className='flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6'>
           <CardTitle>Push 전송양</CardTitle>
           <CardDescription>
-            Showing total visitors for the last 3 months
+            최근 3개월간 전송한 Push 메세지양 입니다.
           </CardDescription>
         </div>
-        <div className='flex'>
+        {/* <div className='flex'>
           {['desktop'].map((key) => {
             const chart = key as keyof typeof chartConfig;
             return (
@@ -167,7 +167,7 @@ export function BarGraph() {
               </button>
             );
           })}
-        </div>
+        </div> */}
       </CardHeader>
       <CardContent className='px-2 sm:p-6'>
         <ChartContainer

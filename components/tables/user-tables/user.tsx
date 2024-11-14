@@ -31,6 +31,7 @@ export const UserClient: React.FC<UsersProps> = ({ data }) => {
 
     tableObject.getFilteredSelectedRowModel().rows.forEach((user: any) => {
       const { LOGIN_ID } = user.original;
+      // @ts-ignore
       messages.users.push(LOGIN_ID);
     });
 
@@ -66,6 +67,7 @@ export const UserClient: React.FC<UsersProps> = ({ data }) => {
       <DataTable
         searchKey='name'
         columns={columns}
+        // @ts-ignore
         data={data}
         getTable={(t: any) => {
           tableObject = t;

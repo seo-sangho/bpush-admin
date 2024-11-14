@@ -58,6 +58,7 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
         userId: token.original.USER_ID,
       };
 
+      // @ts-ignore
       messages.pushTokens.push(temp);
     });
 
@@ -91,6 +92,7 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
         searchKey='name'
         columns={columns}
         data={data}
+        // @ts-ignore
         getTable={(_tableObject) => {
           tableObject = _tableObject;
         }}

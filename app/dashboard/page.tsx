@@ -13,16 +13,54 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-// import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
+
+async function getRecentUsers() {
+  const res = await prisma.push_history.findMany({
+    take: 5,
+    orderBy: [
+      {
+        CREATED_DT: 'desc',
+      },
+      { ID: 'desc' },
+    ],
+  });
+
+  return res;
+}
+
+async function getHistories() {
+  // const res = await prisma.push_history.groupBy({
+  //   by: ['CREATED_DT'],
+  //   orderBy: {
+  //     CREATED_DT: 'desc',
+  //   },
+  //   _count: { PUSH_TOKEN: true },
+  //   where: {
+  //     CREATED_DT: {
+  //       gte: new Date(new Date().getFullYear(), 0, 1),
+  //     },
+  //   },
+  //   // _CREATED_DT: { year: true, month: true },
+  //   take: 30,
+  // });
+  // const data = await prisma.$queryRaw<{ date: string; count: number }[]>`
+  //   SELECT TO_CHAR("CREATED_DT", 'YYYY-MM-DD') AS date,
+  //          COUNT(*) AS count
+  //    FROM "push_history"
+  //   WHERE "CREATED_DT" >= DATE_TRUNC('year', CURRENT_DATE) -- 올해 1월 1일부터
+  //   GROUP BY CREATED_DT
+  //   ORDER BY CREATED_DT;
+  // `;
+  // return data;
+  return [];
+}
 
 export default async function page() {
-  // const res = await prisma.push_token.create({
-  //   data: {
-  //     PUSH_TOKEN: 'push-token_push-token',
-  //   },
-  // });
+  const recentsUsers = await getRecentUsers();
+  const histories = await getHistories();
 
   return (
     <PageContainer scrollable={true}>
@@ -33,7 +71,7 @@ export default async function page() {
           </h2>
           <div className='hidden items-center space-x-2 md:flex'>
             <CalendarDateRangePicker />
-            <Button>Download</Button>
+            {/* <Button>Download</Button> */}
           </div>
         </div>
         <Tabs
@@ -172,13 +210,13 @@ export default async function page() {
               </div>
               <Card className='col-span-4 md:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>최근 Push 사용자</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    최근에 Push 메세지를 전송한 사용자의 목록입니다.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <RecentSales />
+                  <RecentSales users={recentsUsers} />
                 </CardContent>
               </Card>
               {/* <div className='col-span-4'>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function sendPush(messages) {
+export async function sendPush(messages: object) {
   const url = process.env.NEXT_PUBLIC_BPUSH_API ?? '';
   const api = process.env.NEXT_PUBLIC_BPUSH_API_PUSH ?? '';
 

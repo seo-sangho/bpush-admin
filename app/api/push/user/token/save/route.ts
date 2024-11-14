@@ -49,6 +49,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       },
     });
   } catch (err) {
+    console.error(`${err}`);
     return NextResponse.json(
       { code: 500, error: 'push token fail' },
       { status: 500 },

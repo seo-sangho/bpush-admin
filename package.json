@@ -26,7 +26,7 @@
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.3.2",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^5.22.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -68,7 +68,7 @@
     "react-day-picker": "^8.9.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
-    "recharts": "^2.12.7",
+    "recharts": "^2.13.0-alpha.5",
     "sharp": "^0.32.5",
     "simple-icons": "^13.14.0",
     "tailwind-merge": "^1.14.0",
@@ -86,6 +86,6 @@
     "lint-staged": "^15.2.7",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "prisma": "^5.21.1"
+    "prisma": "^5.22.0"
   }
 }
