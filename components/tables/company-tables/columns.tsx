@@ -43,8 +43,17 @@ export const columns: ColumnDef<CompanyItem>[] = [
     header: '가입일',
     cell: ({ row }) => {
       const createDate = row.original.CREATED_DT;
-      return `
-        ${createDate?.getFullYear()}-${createDate?.getMonth()}-${createDate?.getDay()}`;
+      if (!createDate) {
+        return '';
+      }
+
+      return createDate.toLocaleDateString('ko-KR', {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      // return `
+      //   ${createDate?.getFullYear()}-${createDate?.getMonth()}-${createDate?.getDay()}`;
     },
   },
   // {

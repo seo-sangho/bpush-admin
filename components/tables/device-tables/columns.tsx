@@ -78,7 +78,11 @@ export const columns: ColumnDef<push_token>[] = [
         return '';
       }
 
-      return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDay();
+      return d.toLocaleDateString('ko-KR', {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+      });
     },
   },
   // {

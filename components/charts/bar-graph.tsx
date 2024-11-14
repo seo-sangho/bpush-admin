@@ -191,7 +191,7 @@ export function BarGraph() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString('en-US', {
+                return date.toLocaleDateString('ko-KR', {
                   month: 'short',
                   day: 'numeric',
                 });
