@@ -10,7 +10,7 @@ datasource db {
 
 model user {
   CREATED_AT    DateTime  @default(now()) @db.Timestamptz(6)
-  LOGIN_ID      String?   @db.VarChar(100)
+  LOGIN_ID      String    @unique @db.VarChar(100)
   NAME          String?   @db.VarChar(30)
   COMPANY_CODE  String?   @db.VarChar(10)
   LAST_LOGIN_DT DateTime? @db.Date
