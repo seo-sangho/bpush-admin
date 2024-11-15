@@ -58,6 +58,7 @@ export default async function AuthenticationPage() {
               가입을 완료하기 위해 서비스 이용을 위한 추가 정보를 입력해주세요.
             </p>
           </div>
+          {/* @ts-ignore */}
           <UserJoinForm company={companys} />
           {/* <p className='px-8 text-center text-sm text-muted-foreground'>
             By clicking continue, you agree to our{' '}
