@@ -26,9 +26,9 @@ interface PuthToken {
 }
 
 interface Message {
-  title: string
-  content: string,
-  pushTokens: PuthToken[]
+  title: string;
+  content: string;
+  pushTokens: PuthToken[];
 }
 
 export const Devices: React.FC<DeviceToken> = ({ data }) => {
@@ -47,16 +47,16 @@ export const Devices: React.FC<DeviceToken> = ({ data }) => {
     _title = title;
     _content = content;
 
-    const messages : Message = {
+    const messages: Message = {
       title: _title ?? 'B-PUSH',
       content: _content,
-      pushTokens: 
+      pushTokens: [],
       // [
-        // {
-        //   pushToken:
-        //     'cU0mnmCz7iiyVHHfpKJhKJ:APA91bEwfwv2fuF1naneU-5HYDBJIA_TZwdjGW8puSBx4MtXtm1xZez1xXuZdWX85FtnFH3_ufA0WvUEP0x6C0VYnCFMYMHmMuJUiyRsxiqTRKO15ahCcw4',
-        //   userId: 'test003@gmail.com',
-        // },
+      // {
+      //   pushToken:
+      //     'cU0mnmCz7iiyVHHfpKJhKJ:APA91bEwfwv2fuF1naneU-5HYDBJIA_TZwdjGW8puSBx4MtXtm1xZez1xXuZdWX85FtnFH3_ufA0WvUEP0x6C0VYnCFMYMHmMuJUiyRsxiqTRKO15ahCcw4',
+      //   userId: 'test003@gmail.com',
+      // },
       // ],
     };
 
