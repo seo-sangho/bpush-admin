@@ -53,6 +53,7 @@ export default async function page({ searchParams }: paramsProps) {
           pageNo={page}
           columns={columns}
           totalUsers={totalUsers}
+          // @ts-ignore
           data={company}
           pageCount={pageCount}
         />
