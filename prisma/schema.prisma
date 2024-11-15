@@ -8,67 +8,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model companys {
-  ID           Int       @default(autoincrement())
-  COMPANY_CODE String?   @db.VarChar(10)
-  COMPANY_NAME String?   @db.VarChar(100)
-  CREATED_DT   DateTime? @default(now()) @db.Date
-  CREATED_ID   String?   @db.VarChar(20)
-
-  @@ignore
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model push_history {
-  ID           Int       @default(autoincrement())
-  PUSH_TOKEN   String?   @db.VarChar(500)
-  USER_ID      String?   @db.VarChar(50)
-  COMPANY_CODE String?   @db.VarChar(20)
-  BROWSER_TYPE String?   @db.VarChar(20)
-  TITLE        String?   @db.VarChar(255)
-  CONTENT      String?   @db.VarChar(255)
-  FILE_ID      BigInt?
-  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
-  CREATED_ID   String?   @db.VarChar(20)
-  UPDATED_DT   DateTime? @db.Timestamp(6)
-  UPDATED_ID   String?   @db.VarChar(20)
-  SUCCESS_YN   String?   @db.VarChar(1)
-
-  @@ignore
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model push_token {
-  ID           Int       @default(autoincrement())
-  PUSH_TOKEN   String?   @unique(map: "push_token_unique") @db.VarChar(500)
-  USER_ID      String?   @db.VarChar(50)
-  EXPIRE_DT    DateTime? @db.Timestamp(6)
-  COMPANY_CODE String?   @db.VarChar(20)
-  BROWSER_TYPE String?   @db.VarChar(256)
-  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
-  CREATED_ID   String?   @db.VarChar(20)
-  UPDATED_DT   DateTime? @db.Timestamp(6)
-  UPDATED_ID   String?   @db.VarChar(20)
-  DEL_YN       String?   @db.VarChar(1)
-
-  @@ignore
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model push_user {
-  ID           Int       @default(autoincrement())
-  LOGIN_ID     String?   @db.VarChar(50)
-  PUSH_YN      String?   @db.VarChar(1)
-  COMPANY_CODE String?   @db.VarChar(10)
-  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
-  CREATED_ID   String?   @db.VarChar(20)
-  UPDATED_DT   DateTime? @db.Timestamp(6)
-  UPDATED_ID   String?   @db.VarChar(20)
-
-  @@ignore
-}
-
 model user {
   CREATED_AT    DateTime  @default(now()) @db.Timestamptz(6)
   LOGIN_ID      String?   @db.VarChar(100)
@@ -84,4 +23,53 @@ model user {
   EMAIL         String?   @db.VarChar(100)
   IMAGE         String?   @db.VarChar(256)
   ID            Int       @id(map: "user_pk") @default(autoincrement())
+}
+
+model companys {
+  ID           Int       @id(map: "companys_pk") @default(autoincrement())
+  COMPANY_CODE String?   @db.VarChar(10)
+  COMPANY_NAME String?   @db.VarChar(100)
+  CREATED_DT   DateTime? @default(now()) @db.Date
+  CREATED_ID   String?   @db.VarChar(20)
+}
+
+model push_history {
+  ID           Int       @id(map: "push_history_pk") @default(autoincrement())
+  PUSH_TOKEN   String?   @db.VarChar(500)
+  USER_ID      String?   @db.VarChar(50)
+  COMPANY_CODE String?   @db.VarChar(20)
+  BROWSER_TYPE String?   @db.VarChar(20)
+  TITLE        String?   @db.VarChar(255)
+  CONTENT      String?   @db.VarChar(255)
+  FILE_ID      BigInt?
+  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(6)
+  UPDATED_ID   String?   @db.VarChar(20)
+  SUCCESS_YN   String?   @db.VarChar(1)
+}
+
+model push_user {
+  ID           Int       @id @default(autoincrement())
+  LOGIN_ID     String?   @db.VarChar(50)
+  PUSH_YN      String?   @db.VarChar(1)
+  COMPANY_CODE String?   @db.VarChar(10)
+  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(6)
+  UPDATED_ID   String?   @db.VarChar(20)
+}
+
+model push_token {
+  ID           Int       @id @default(autoincrement())
+  PUSH_TOKEN   String?   @unique(map: "push_token_unique") @db.VarChar(500)
+  USER_ID      String?   @db.VarChar(50)
+  EXPIRE_DT    DateTime? @db.Timestamp(6)
+  COMPANY_CODE String?   @db.VarChar(20)
+  BROWSER_TYPE String?   @db.VarChar(256)
+  CREATED_DT   DateTime? @default(now()) @db.Timestamp(6)
+  CREATED_ID   String?   @db.VarChar(20)
+  UPDATED_DT   DateTime? @db.Timestamp(6)
+  UPDATED_ID   String?   @db.VarChar(20)
+  DEL_YN       String?   @db.VarChar(1)
 }
