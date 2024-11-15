@@ -8,7 +8,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model companys {
   ID           Int       @default(autoincrement())
@@ -20,7 +19,6 @@ model companys {
   @@ignore
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model push_history {
   ID           Int       @default(autoincrement())
@@ -40,7 +38,6 @@ model push_history {
   @@ignore
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model push_token {
   ID           Int       @default(autoincrement())
@@ -58,7 +55,6 @@ model push_token {
   @@ignore
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model push_user {
   ID           Int       @default(autoincrement())
@@ -73,10 +69,7 @@ model push_user {
   @@ignore
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model user {
-  ID            BigInt    @default(autoincrement())
   CREATED_AT    DateTime  @default(now()) @db.Timestamptz(6)
   LOGIN_ID      String?   @db.VarChar(100)
   NAME          String?   @db.VarChar(30)
@@ -90,6 +83,5 @@ model user {
   UUID          String?   @db.VarChar(50)
   EMAIL         String?   @db.VarChar(100)
   IMAGE         String?   @db.VarChar(256)
-
-  @@ignore
+  ID            Int       @id(map: "user_pk") @default(autoincrement())
 }
