@@ -84,7 +84,6 @@ const authConfig = {
       }
 
       if (isAllowedToSignIn) {
-        // return true;
         return true;
       } else {
         // Return false to display a default error message
