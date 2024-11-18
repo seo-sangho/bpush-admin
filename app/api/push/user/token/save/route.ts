@@ -28,6 +28,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     );
   }
 
+  let expiredDate = new Date();
+  expiredDate.setDate(expiredDate.getDate() + 7);
+
   try {
     await prisma.push_token.upsert({
       where: {
@@ -38,14 +41,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
         USER_ID: userId,
         COMPANY_CODE: companyCode,
         BROWSER_TYPE: browserType,
-        EXPIRE_DT: new Date(),
+        CREATED_ID: userId,
+        UPDATED_DT: new Date(),
+        EXPIRE_DT: expiredDate,
       },
       update: {
         PUSH_TOKEN: pushToken,
         USER_ID: userId,
         COMPANY_CODE: companyCode,
         BROWSER_TYPE: browserType,
-        EXPIRE_DT: new Date(),
+        UPDATED_ID: userId,
+        UPDATED_DT: new Date(),
+        EXPIRE_DT: expiredDate,
       },
     });
   } catch (err) {

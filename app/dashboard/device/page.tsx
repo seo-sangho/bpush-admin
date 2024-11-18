@@ -10,7 +10,12 @@ const breadcrumbItems = [
 ];
 
 export default async function page() {
-  const devices = await prisma.push_token.findMany();
+  const devices = await prisma.push_token.findMany({
+    where: {
+      DEL_YN: 'N',
+    },
+    orderBy: [{ EXPIRE_DT: 'desc' }],
+  });
 
   return (
     <PageContainer>
