@@ -46,9 +46,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
         EXPIRE_DT: expiredDate,
       },
       update: {
-        PUSH_TOKEN: pushToken,
-        USER_ID: userId,
-        COMPANY_CODE: companyCode,
+        // PUSH_TOKEN: pushToken,
+        // USER_ID: userId,
+        // COMPANY_CODE: companyCode,
         BROWSER_TYPE: browserType,
         UPDATED_ID: userId,
         UPDATED_DT: new Date(),
